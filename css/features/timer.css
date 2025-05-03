@@ -1,0 +1,175 @@
+/* ========== Temporizadores ========== */
+.timers-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.global-timer {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  flex: 1 1 300px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.global-timer-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-family: monospace;
+}
+
+.global-timer-label {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.level-timer {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  flex: 1 1 300px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.level-timer-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-family: monospace;
+}
+
+.level-timer-label {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.clock-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timer-circle {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-progress {
+  stroke: var(--primary);
+  stroke-width: 8;
+  stroke-linecap: round;
+  fill: none;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.5s;
+}
+
+.timer-background {
+  stroke: var(--border-color);
+  stroke-width: 4;
+  fill: none;
+}
+
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.timer-time {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-light);
+  display: block;
+  font-family: monospace;
+}
+
+.timer-label {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.blind-info {
+  text-align: center;
+}
+
+.next-blind-box {
+  background-color: var(--bg-main);
+  border-radius: var(--border-radius);
+  padding: 12px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+.next-blind-title {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.next-blind-values {
+  font-size: 1.2rem;
+  color: var(--text-light);
+}
+
+.current-blind-box {
+  background-color: var(--primary);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+
+.current-blind-title {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.current-blind-values {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.current-blind-ante {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.current-level {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 8px;
+  background-color: var(--bg-main);
+  border-radius: var(--border-radius);
+  padding: 10px;
+} 

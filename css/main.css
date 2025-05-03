@@ -1,0 +1,36 @@
+/**
+ * main.css - Archivo principal de estilos para CursorPoker
+ * 
+ * Este archivo importa todos los módulos CSS del proyecto
+ * en un orden específico para asegurar la correcta
+ * cascada de estilos.
+ */
+
+/* Core - Estilos fundamentales */
+@import 'core/variables.css';
+@import 'core/reset.css';
+@import 'core/layout.css';
+
+/* Componentes - Elementos reutilizables */
+@import 'components/buttons.css';
+@import 'components/forms.css';
+@import 'components/modals.css';
+@import 'components/notifications.css';
+@import 'components/cards.css';
+@import 'components/tabs.css';
+
+/* Pantallas - Páginas específicas */
+@import 'screens/loader.css';
+@import 'screens/welcome.css';
+@import 'screens/config.css';
+@import 'screens/game.css';
+
+/* Características - Funcionalidades específicas */
+@import 'features/timer.css';
+@import 'features/blinds.css';
+@import 'features/players.css';
+@import 'features/prizes.css';
+
+/* Utilidades */
+@import 'utils/animations.css';
+@import 'utils/responsive.css'; 

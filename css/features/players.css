@@ -1,0 +1,171 @@
+/* ========== Gestión de Jugadores ========== */
+.players-section {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.players-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.players-heading h3 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+/* Panel de acciones del jugador */
+.action-panel {
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 350px;
+  height: 100%;
+  background-color: var(--bg-card);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  transition: right var(--transition);
+  z-index: var(--z-modals);
+  overflow-y: auto;
+}
+
+.action-panel.active {
+  right: 0;
+}
+
+.panel-header {
+  background-color: var(--primary);
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-header h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.close-panel {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.panel-body {
+  padding: 20px;
+}
+
+.player-chips {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.chips-label {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.chips-counter {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.chips-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.chip-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--bg-main);
+  color: var(--text-light);
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.chip-btn:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.chips-input {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.chips-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--border-radius);
+}
+
+.chips-input button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.player-history {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.player-history h4 {
+  margin-bottom: 16px;
+}
+
+.history-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.history-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.history-icon.plus {
+  color: var(--success);
+}
+
+.history-icon.minus {
+  color: var(--danger);
+}
+
+.history-time {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+} 

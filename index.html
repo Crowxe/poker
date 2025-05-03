@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokerPro - Gestión Profesional de Torneos de Póker</title>
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles2.css">
+  <link rel="stylesheet" href="styles3.css">
+  <link rel="stylesheet" href="styles4.css">
+</head>
+<body>
+  <!-- Pantalla de carga -->
+  <div id="loader">
+    <div class="loader-container">
+      <div class="poker-loader">
+        <div class="poker-chip"></div>
+        <div class="poker-chip"></div>
+        <div class="poker-chip"></div>
+        <div class="poker-chip"></div>
+      </div>
+      <h2>Cargando PokerPro...</h2>
+      <div id="loading-error" style="color: red; margin-top: 15px; font-weight: bold;"></div>
+    </div>
+  </div>
+
+  <main id="app-container">
+    <!-- Header -->
+    <header id="app-header">
+      <div class="logo">
+        <i class="fas fa-crown"></i> PokerPro
+      </div>
+      <nav>
+        <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+        <button id="help-btn"><i class="fas fa-question-circle"></i></button>
+      </nav>
+    </header>
+
+    <!-- Pantalla de Bienvenida -->
+    <section id="welcome-screen" class="app-screen active">
+      <div class="welcome-content">
+        <h1>PokerPro</h1>
+        <p>La herramienta definitiva para gestionar tus torneos de póker caseros como un profesional.</p>
+        
+        <div class="welcome-cards">
+          <div class="poker-card red">♥</div>
+          <div class="poker-card">♠</div>
+          <div class="poker-card red">♦</div>
+          <div class="poker-card">♣</div>
+        </div>
+        
+        <div class="action-buttons">
+          <button id="new-tournament-btn" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Nuevo Torneo
+          </button>
+          <button id="load-tournament-btn" class="btn btn-outline">
+            <i class="fas fa-folder-open"></i> Cargar Torneo
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pantalla de Configuración -->
+    <section id="config-screen" class="app-screen">
+      <div class="config-container">
+        <div class="config-header">
+          <h1>Configuración del Torneo</h1>
+          
+          <div class="progress-indicator">
+            <div class="progress-step active">1</div>
+            <div class="progress-step">2</div>
+            <div class="progress-step">3</div>
+            <div class="progress-step">4</div>
+          </div>
+        </div>
+        
+        <!-- Paso 1: Información Básica -->
+        <div class="config-step" id="step-1">
+          <h2>Información Básica</h2>
+          
+          <div class="form-group">
+            <label for="tournament-name">Nombre del Torneo</label>
+            <input type="text" id="tournament-name" placeholder="Torneo de Póker" value="Torneo de Póker">
+          </div>
+          
+          <div class="form-group">
+            <label for="entry-fee">Valor de Entrada (Buy-in)</label>
+            <div class="input-with-icon">
+              <i class="fas fa-dollar-sign"></i>
+              <input type="number" id="entry-fee" value="10000" min="0">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tournament-date">Fecha</label>
+              <input type="date" id="tournament-date">
+            </div>
+            <div class="form-group">
+              <label for="tournament-location">Lugar</label>
+              <input type="text" id="tournament-location" placeholder="Mi casa">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="tournament-notes">Notas adicionales</label>
+            <textarea id="tournament-notes" placeholder="Reglas especiales, información adicional, etc."></textarea>
+          </div>
+          
+          <div class="form-actions">
+            <button class="btn btn-primary next-step" data-step="1">
+              Siguiente <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Paso 2: Estructura de Ciegas -->
+        <div class="config-step" id="step-2" style="display: none;">
+          <h2>Estructura de Ciegas</h2>
+          
+          <div class="presets-container">
+            <h3>Selecciona un Preset</h3>
+            <div class="preset-buttons">
+              <button class="preset-btn" data-preset="casual">Casual (15 min)</button>
+              <button class="preset-btn" data-preset="standard">Estándar (20 min)</button>
+              <button class="preset-btn" data-preset="turbo">Turbo (10 min)</button>
+            </div>
+          </div>
+          
+          <div class="levels-editor">
+            <div class="levels-header">
+              <div>Nivel</div>
+              <div>Ciega Pequeña</div>
+              <div>Ciega Grande</div>
+              <div>Ante</div>
+              <div>Duración</div>
+              <div>Acción</div>
+            </div>
+            <div class="levels-body" id="levels-body">
+              <!-- Los niveles se insertarán aquí dinámicamente -->
+            </div>
+            <div class="add-level-container">
+              <div class="form-row">
+                <div class="form-group">
+                  <input type="number" id="small-blind" placeholder="Ciega pequeña" min="1">
+                </div>
+                <div class="form-group">
+                  <input type="number" id="big-blind" placeholder="Ciega grande" min="2">
+                </div>
+                <div class="form-group">
+                  <input type="number" id="ante" placeholder="Ante (opcional)" min="0">
+                </div>
+                <div class="form-group">
+                  <input type="number" id="level-duration" placeholder="Duración (min)" min="1">
+                </div>
+                <button id="add-level-btn" class="btn btn-primary">
+                  <i class="fas fa-plus"></i> Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button class="btn btn-outline prev-step" data-step="2">
+              <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <button class="btn btn-primary next-step" data-step="2">
+              Siguiente <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Paso 3: Jugadores -->
+        <div class="config-step" id="step-3" style="display: none;">
+          <h2>Jugadores</h2>
+          
+          <div class="players-container">
+            <div class="players-header">
+              <div>Nombre</div>
+              <div>Fichas</div>
+              <div>Acción</div>
+            </div>
+            <div class="players-body" id="players-body">
+              <!-- Los jugadores se insertarán aquí dinámicamente -->
+            </div>
+            <div class="add-level-container">
+              <div class="form-row">
+                <div class="form-group flex-grow">
+                  <input type="text" id="player-name" placeholder="Nombre del jugador">
+                </div>
+                <div class="form-group">
+                  <div class="input-with-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                    <input type="number" id="initial-chips" value="10000" min="0">
+                  </div>
+                </div>
+                <button id="add-player-btn" class="btn btn-primary">
+                  <i class="fas fa-plus"></i> Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="prize-summary">
+            <h3>Distribución de Premios</h3>
+            <div class="prize-calculation">
+              <div class="prize-item">
+                <div>Bote total estimado</div>
+                <div id="total-prize-pool">$0</div>
+              </div>
+            </div>
+            
+            <div class="prize-distribution">
+              <h4>Premios por posición</h4>
+              <div id="prize-distribution-list">
+                <!-- La distribución de premios se insertará aquí -->
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button class="btn btn-outline prev-step" data-step="3">
+              <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <button class="btn btn-primary next-step" data-step="3">
+              Siguiente <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Paso 4: Resumen y Confirmación -->
+        <div class="config-step" id="step-4" style="display: none;">
+          <h2>Resumen del Torneo</h2>
+          
+          <div class="summary-grid">
+            <div class="summary-item">
+              <div class="summary-icon"><i class="fas fa-crown"></i></div>
+              <div class="summary-value" id="summary-tournament-name">Torneo de Póker</div>
+              <div class="summary-label">Nombre</div>
+            </div>
+            
+            <div class="summary-item">
+              <div class="summary-icon"><i class="fas fa-users"></i></div>
+              <div class="summary-value" id="summary-players">0</div>
+              <div class="summary-label">Jugadores</div>
+            </div>
+            
+            <div class="summary-item">
+              <div class="summary-icon"><i class="fas fa-dollar-sign"></i></div>
+              <div class="summary-value" id="summary-buy-in">$0</div>
+              <div class="summary-label">Buy-in</div>
+            </div>
+            
+            <div class="summary-item">
+              <div class="summary-icon"><i class="fas fa-coins"></i></div>
+              <div class="summary-value" id="summary-total-pot">$0</div>
+              <div class="summary-label">Bote Total</div>
+            </div>
+            
+            <div class="summary-item">
+              <div class="summary-icon"><i class="fas fa-layer-group"></i></div>
+              <div class="summary-value" id="summary-levels">0</div>
+              <div class="summary-label">Niveles</div>
+            </div>
+            
+            <div class="summary-item">
+              <div class="summary-icon"><i class="fas fa-hourglass-half"></i></div>
+              <div class="summary-value" id="summary-duration">0h 0m</div>
+              <div class="summary-label">Duración Estimada</div>
+            </div>
+          </div>
+          
+          <div class="tournament-options">
+            <h3>Opciones Adicionales</h3>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="break-option">
+                  Incluir descansos automáticos
+                </label>
+              </div>
+              
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="sounds-option" checked>
+                  Activar sonidos
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button class="btn btn-outline prev-step" data-step="4">
+              <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <button id="start-tournament-btn" class="btn btn-primary">
+              <i class="fas fa-play"></i> Iniciar Torneo
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pantalla de Juego -->
+    <section id="game-screen" class="app-screen">
+      <div class="game-container">
+        <div class="game-header">
+          <div class="tournament-info">
+            <h1 id="game-tournament-name">Torneo de Póker</h1>
+            <div class="tournament-stats">
+              <div class="stat-item">
+                <i class="fas fa-users"></i> <span id="players-count">0</span> jugadores
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-coins"></i> <span id="total-pot">$0</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="timers-container">
+            <div class="global-timer">
+              <div class="global-timer-value" id="global-timer-value">00:00:00</div>
+              <div class="global-timer-label">Tiempo de Juego</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="clock-display">
+          <div class="blind-info">
+            <div class="next-blind-box" id="next-level-box">
+              <div class="next-blind-title">Próximo Nivel</div>
+              <div class="next-blind-values" id="next-blind-values">100 / 200</div>
+            </div>
+          </div>
+          
+          <div class="timer-circle">
+            <svg viewBox="0 0 250 250">
+              <circle cx="125" cy="125" r="120" class="timer-background"></circle>
+              <circle cx="125" cy="125" r="120" class="timer-progress"></circle>
+            </svg>
+            <div class="timer-text">
+              <div class="timer-time" id="timer-time">00:00</div>
+              <div class="timer-label">Tiempo Restante</div>
+            </div>
+          </div>
+          
+          <div class="blind-info">
+            <div class="current-blind-box">
+              <div class="current-blind-title">Nivel Actual</div>
+              <div class="current-blind-values" id="current-blinds-values">50 / 100</div>
+              <div class="current-blind-ante" id="current-blind-ante">Ante: 0</div>
+              <div class="current-level" id="current-level">Nivel 1</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="game-controls">
+          <button id="pause-btn" class="control-btn">
+            <i class="fas fa-pause"></i>
+            <span>Pausar</span>
+          </button>
+          <button id="next-level-btn" class="control-btn">
+            <i class="fas fa-forward"></i>
+            <span>Nivel Siguiente</span>
+          </button>
+          <button id="structure-btn" class="control-btn">
+            <i class="fas fa-list"></i>
+            <span>Estructura</span>
+          </button>
+          <button id="add-player-game-btn" class="control-btn">
+            <i class="fas fa-user-plus"></i>
+            <span>Añadir Jugador</span>
+          </button>
+          <button id="end-tournament-btn" class="control-btn">
+            <i class="fas fa-trophy"></i>
+            <span>Terminar Torneo</span>
+          </button>
+        </div>
+        
+        <div id="blind-structure" class="blind-structure" style="display: none;">
+          <div class="structure-heading">
+            <h3>Estructura de Ciegas</h3>
+            <button id="close-structure" class="btn btn-outline btn-sm">Cerrar</button>
+          </div>
+          <table class="blind-structure-table">
+            <thead>
+              <tr>
+                <th>Nivel</th>
+                <th>Ciega Pequeña</th>
+                <th>Ciega Grande</th>
+                <th>Ante</th>
+                <th>Duración</th>
+              </tr>
+            </thead>
+            <tbody id="structure-table-body">
+              <!-- La estructura de ciegas se insertará aquí -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="players-section">
+          <div class="players-heading">
+            <h3>Jugadores</h3>
+            <div class="players-filter">
+              <button class="btn btn-outline btn-sm active">Todos</button>
+              <button class="btn btn-outline btn-sm">Activos</button>
+              <button class="btn btn-outline btn-sm">Eliminados</button>
+            </div>
+          </div>
+          
+          <div class="player-cards" id="players-container">
+            <!-- Las tarjetas de jugadores se insertarán aquí -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pantalla de Resultados -->
+    <section id="results-screen" class="app-screen">
+      <div class="results-container">
+        <div class="results-header">
+          <h1>Resultados del Torneo</h1>
+          <h2 id="result-tournament-name">Torneo de Póker</h2>
+        </div>
+        
+        <div class="results-content">
+          <div class="modal active">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2><i class="fas fa-trophy"></i> ¡Torneo Finalizado!</h2>
+              </div>
+              <div class="modal-body">
+                <div class="winner-animation">
+                  <div class="winner-podium">
+                    <div class="winner-spot" id="second-place">
+                      <div class="winner-trophy silver"><i class="fas fa-award"></i></div>
+                      <div class="winner-name">2° Lugar</div>
+                      <div class="winner-prize">$0</div>
+                    </div>
+                    <div class="winner-spot" id="first-place">
+                      <div class="winner-trophy gold"><i class="fas fa-trophy"></i></div>
+                      <div class="winner-name">1° Lugar</div>
+                      <div class="winner-prize">$0</div>
+                    </div>
+                    <div class="winner-spot" id="third-place">
+                      <div class="winner-trophy bronze"><i class="fas fa-medal"></i></div>
+                      <div class="winner-name">3° Lugar</div>
+                      <div class="winner-prize">$0</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="tournament-summary">
+                  <h3>Resumen del Torneo</h3>
+                  <div class="summary-stats">
+                    <div class="summary-stat">
+                      <div class="stat-label">Duración Total</div>
+                      <div class="stat-value" id="final-duration">00:00:00</div>
+                    </div>
+                    <div class="summary-stat">
+                      <div class="stat-label">Jugadores</div>
+                      <div class="stat-value" id="final-players">0</div>
+                    </div>
+                    <div class="summary-stat">
+                      <div class="stat-label">Bote Final</div>
+                      <div class="stat-value" id="final-pot">$0</div>
+                    </div>
+                    <div class="summary-stat">
+                      <div class="stat-label">Niveles Jugados</div>
+                      <div class="stat-value" id="final-levels">0</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button id="share-results-btn" class="btn btn-outline">
+                  <i class="fas fa-share-alt"></i> Compartir
+                </button>
+                <button id="save-tournament-btn" class="btn btn-secondary">
+                  <i class="fas fa-save"></i> Guardar
+                </button>
+                <button id="finish-tournament-btn" class="btn btn-primary">
+                  <i class="fas fa-home"></i> Finalizar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel de acción del jugador -->
+    <div id="player-action-panel" class="action-panel">
+      <div class="panel-header">
+        <h3 id="action-player-name">Nombre del Jugador</h3>
+        <button class="close-panel">×</button>
+      </div>
+      <div class="panel-body">
+        <div class="player-chips">
+          <div class="chips-label">Fichas:</div>
+          <div class="chips-counter" id="action-player-chips">0</div>
+        </div>
+        
+        <div class="chips-controls">
+          <button class="chip-btn" data-value="1000">1K</button>
+          <button class="chip-btn" data-value="5000">5K</button>
+          <button class="chip-btn" data-value="10000">10K</button>
+          <button class="chip-btn" data-value="25000">25K</button>
+          <div class="chips-input">
+            <input type="number" id="custom-chips" placeholder="Monto personalizado">
+            <button id="add-custom-chips">+</button>
+          </div>
+        </div>
+        
+        <div class="player-actions">
+          <button id="rebuy-btn" class="btn btn-success">
+            <i class="fas fa-redo"></i> Recompra
+          </button>
+          <button id="eliminate-btn" class="btn btn-danger">
+            <i class="fas fa-times"></i> Eliminar
+          </button>
+        </div>
+        
+        <div class="player-history">
+          <h4>Historial</h4>
+          <div class="history-list" id="player-history-list">
+            <!-- El historial se insertará aquí dinámicamente -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Ayuda -->
+    <div id="help-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-question-circle"></i> Ayuda</h2>
+          <button class="close-modal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="tabs">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="general">General</button>
+              <button class="tab-btn" data-tab="setup">Configuración</button>
+              <button class="tab-btn" data-tab="game">Durante el juego</button>
+              <button class="tab-btn" data-tab="shortcuts">Atajos</button>
+            </div>
+            
+            <div class="tab-content">
+              <div class="tab-pane active" id="general-tab">
+                <h3>Uso General</h3>
+                <p>PokerPro es una aplicación diseñada para gestionar torneos de póker de manera profesional. Te permite configurar torneos, gestionar jugadores, controlar tiempos y niveles, y ver resultados.</p>
+                <h4>Características principales:</h4>
+                <ul>
+                  <li>Gestión completa de torneos de póker</li>
+                  <li>Control de tiempo y niveles de ciegas</li>
+                  <li>Seguimiento de jugadores y fichas</li>
+                  <li>Distribución automática de premios</li>
+                  <li>Interfaz intuitiva y profesional</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notificaciones -->
+    <div id="notifications-container" class="notifications-container"></div>
+  </main>
+
+  <footer>
+    <p>PokerPro &copy; 2023 - La mejor herramienta para gestionar torneos de póker</p>
+  </footer>
+
+  <script>
+    // Función para mostrar errores de carga
+    window.showLoadingError = function(message) {
+      const errorDiv = document.getElementById('loading-error');
+      if (errorDiv) {
+        errorDiv.textContent = `Error: ${message}`;
+        errorDiv.style.display = 'block';
+      }
+      console.error('Error de carga:', message);
+    };
+    
+    // Detectar errores no capturados
+    window.addEventListener('error', function(event) {
+      window.showLoadingError(event.message);
+    });
+  </script>
+  
+  <script type="module" src="script.js" defer></script>
+</body>
+</html> 

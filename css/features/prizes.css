@@ -1,0 +1,99 @@
+/* ========== Premios y Distribución ========== */
+.prize-summary {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.prize-calculation {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.prize-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.prize-distribution {
+  background-color: var(--bg-main);
+  border-radius: var(--border-radius);
+  padding: 16px;
+}
+
+.prize-distribution h4 {
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+#prize-distribution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.prize-position {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+}
+
+.prize-position-label {
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.prize-amount {
+  font-weight: 700;
+  padding: 4px 10px;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 20px;
+}
+
+.custom-prizes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  background-color: var(--bg-main);
+  border-radius: var(--border-radius);
+  padding: 16px;
+}
+
+.custom-prize-item {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.custom-prize-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.custom-prize-title {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.custom-prize-item input {
+  margin-top: 8px;
+  width: 100%;
+} 

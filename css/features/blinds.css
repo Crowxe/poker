@@ -1,0 +1,55 @@
+/* ========== Estructura de Ciegas ========== */
+.blind-structure {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.structure-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.structure-heading h3 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.blind-structure-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.blind-structure-table th,
+.blind-structure-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.blind-structure-table th {
+  font-weight: 600;
+  color: var(--text-light);
+  background-color: var(--bg-main);
+}
+
+.blind-structure-table tr.current-level-row {
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+.blind-structure-table tr.current-level-row td {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Controles del juego */
+.game-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+} 

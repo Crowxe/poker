@@ -1,0 +1,87 @@
+/* ========== Pantalla de Bienvenida ========== */
+#welcome-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.welcome-content {
+  max-width: 600px;
+  padding: 40px;
+}
+
+.welcome-content h1 {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.welcome-content p {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  margin-bottom: 30px;
+}
+
+.welcome-cards {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.welcome-cards .poker-card {
+  width: 60px;
+  height: 90px;
+  margin: 0 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  transform: rotate(var(--rotation));
+  animation: cardFloat 3s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s);
+}
+
+.welcome-cards .poker-card:nth-child(1) {
+  --rotation: -15deg;
+  --index: 0;
+}
+
+.welcome-cards .poker-card:nth-child(2) {
+  --rotation: -5deg;
+  --index: 1;
+  z-index: 2;
+}
+
+.welcome-cards .poker-card:nth-child(3) {
+  --rotation: 5deg;
+  --index: 2;
+  z-index: 1;
+}
+
+.welcome-cards .poker-card:nth-child(4) {
+  --rotation: 15deg;
+  --index: 3;
+}
+
+.welcome-cards .poker-card.red {
+  color: var(--card-red);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--rotation)); }
+  50% { transform: translateY(-10px) rotate(var(--rotation)); }
+} 

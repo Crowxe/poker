@@ -1,0 +1,57 @@
+/* ========== Variables CSS ========== */
+:root {
+    /* Colores principales */
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #10b981;
+    --secondary-dark: #059669;
+    --accent: #f59e0b;
+    --danger: #ef4444;
+    --success: #10b981;
+    --warning: #f59e0b;
+    
+    /* Fondos y texto */
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-input: #334155;
+    --text-light: #f1f5f9;
+    --text-dim: #94a3b8;
+    --text-dark: #1e293b;
+    
+    /* Bordes y sombras */
+    --border-radius: 8px;
+    --border-color: #334155;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition: 0.3s ease;
+    
+    /* Naipes */
+    --card-red: #e11d48;
+    --card-black: #18181b;
+    
+    /* Premios */
+    --gold: linear-gradient(135deg, #ffd700, #ffb700);
+    --silver: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+    --bronze: linear-gradient(135deg, #cd7f32, #a05a2c);
+
+    /* Z-Index */
+    --z-notifications: 3000;
+    --z-modals: 2000;
+    --z-header: 100;
+    --z-dropdown: 50;
+  }
+  
+  /* Tema claro */
+  [data-theme="light"] {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-input: #f1f5f9;
+    --text-light: #334155;
+    --text-dim: #64748b;
+    --text-dark: #0f172a;
+    --border-color: #e2e8f0;
+  } 
